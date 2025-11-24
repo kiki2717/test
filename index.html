@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Pines | Christmas Tree Installation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f5f2e9] text-[#1f3b2c]">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-5 bg-[#1f3b2c] text-[#f5f2e9] shadow-md">
+    <h1 class="text-2xl font-semibold tracking-wide">🎄 Merry Pines</h1>
+    <a href="#book" class="bg-[#b8903b] hover:bg-[#a77f2d] text-white px-5 py-2 rounded-lg font-medium transition">Book Now</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative text-center py-24 bg-[url('https://images.unsplash.com/photo-1543589077-47c1f2638b9e?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center">
+    <div class="absolute inset-0 bg-[#1f3b2c]/80"></div>
+    <div class="relative z-10 text-[#f5f2e9] max-w-3xl mx-auto">
+      <h2 class="text-5xl font-bold mb-4">Elegance Meets Holiday Spirit</h2>
+      <p class="text-lg mb-8">Professional Christmas tree delivery, setup, and decoration — so you can enjoy a stress-free, magical holiday.</p>
+      <a href="#book" class="bg-[#b8903b] hover:bg-[#a77f2d] px-8 py-3 rounded-lg text-lg font-medium transition">Schedule Installation</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-16 px-6 text-center">
+    <h3 class="text-3xl font-bold mb-10 text-[#1f3b2c]">Our Holiday Services</h3>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div class="bg-[#ffffff] p-8 rounded-2xl shadow-lg border border-[#ddd]">
+        <h4 class="text-xl font-semibold mb-3 text-[#1f3b2c]">🎁 Tree Delivery</h4>
+        <p>Fresh pine trees delivered to your home with care and holiday cheer.</p>
+      </div>
+      <div class="bg-[#ffffff] p-8 rounded-2xl shadow-lg border border-[#ddd]">
+        <h4 class="text-xl font-semibold mb-3 text-[#1f3b2c]">✨ Installation</h4>
+        <p>Our team installs and secures your tree safely — perfect placement guaranteed.</p>
+      </div>
+      <div class="bg-[#ffffff] p-8 rounded-2xl shadow-lg border border-[#ddd]">
+        <h4 class="text-xl font-semibold mb-3 text-[#1f3b2c]">🎀 Decoration</h4>
+        <p>Choose from classic, gold, or modern themes — we handle the ornaments, lights, and star.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-16 bg-[#eae4d8] text-center">
+   <h1 class="text-3xl font-bold text-center mb-8">🎄 Christmas Tree Installation Cost Estimator</h1>
+
+
+<div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full border border-gray-300">
+    <form id="costForm" class="space-y-4">
+        <div>
+            <label class="block font-medium mb-1">Tree Size</label>
+            <select id="treeSize" class="w-full p-2 border rounded">
+                <option value="50">Small (4–7 ft) - $76-125</option>
+                <option value="80">Medium (8–10 ft) - $125-200</option>
+                <option value="120">Large (11+ ft) - $200+</option>
+            </select>
+        </div>
+        <div>
+            
+            <label class="block font-medium mb-1">Decoration Package</label>
+            <select id="decoration" class="w-full p-2 border rounded">
+                <option value="0">None</option>
+                <option value="50">Basic Lights & Ornaments - $50</option>
+                <option value="100">Full Theme Decor - $100</option>
+            </select>
+        </div>
+        <div>
+            
+            <label class="block font-medium mb-1">Delivery Distance</label>
+            <select id="distance" class="w-full p-2 border rounded">
+                <option value="0">0–5 miles $5</option>
+                <option value="15">6–15 miles - $15</option>
+                <option value="30">16–30 miles - $30</option>
+            </select>
+        </div>
+        <div>
+            
+            <label class="block font-medium mb-1">Add-ons</label>
+            <div class="space-y-1">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" value="20" class="addon"> <span>Tree Removal - $50</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" value="15" class="addon"> <span>Gift Wrapping Service - $20</span>
+                </label>
+            </div>
+        </div>
+        <button type="button" onclick="calculateCost()" class="w-full bg-[#b8903b] hover:bg-[#a77f2d] text-white py-2 rounded font-semibold transition">Estimate Cost</button>
+    </form>
+    
+    <div id="result" class="mt-6 text-center hidden">
+        <h2 class="text-2xl font-bold">Estimated Total:</h2>
+        <p id="totalCost" class="text-3xl text-[#1f3b2c] font-bold mt-2"></p>
+    </div>
+</div>
+
+<script>
+function calculateCost() {
+const treeSize = parseFloat(document.getElementById('treeSize').value);
+const decoration = parseFloat(document.getElementById('decoration').value);
+const distance = parseFloat(document.getElementById('distance').value);
+const addons = Array.from(document.querySelectorAll('.addon:checked')).map(a => parseFloat(a.value));
+const addonsTotal = addons.reduce((a, b) => a + b, 0);
+
+const total = treeSize + decoration + distance + addonsTotal;
+
+document.getElementById('result').classList.remove('hidden');
+document.getElementById('totalCost').innerText = `$${total.toFixed(2)}`;
+}
+</script>
+  </section>
+
+  <!-- Booking -->
+  <section id="book" class="py-16 px-6 bg-[#1f3b2c] text-[#f5f2e9]">
+    <h3 class="text-3xl font-bold text-center mb-8">Book Your Installation</h3>
+    <form class="max-w-lg mx-auto bg-[#2c5942] p-8 rounded-2xl shadow-lg space-y-5">
+      <input type="text" placeholder="Full Name" class="w-full p-3 rounded-md text-[#1f3b2c]" required>
+      <input type="email" placeholder="Email" class="w-full p-3 rounded-md text-[#1f3b2c]" required>
+      <input type="tel" placeholder="Phone" class="w-full p-3 rounded-md text-[#1f3b2c]" required>
+      <select class="w-full p-3 rounded-md text-[#1f3b2c]" required>
+        <option value="">Select Service</option>
+        <option>Delivery + Installation</option>
+        <option>Full Decoration Package</option>
+        <option>Custom Theme Setup</option>
+      </select>
+      <button type="submit" class="w-full bg-[#b8903b] hover:bg-[#a77f2d] py-3 rounded-lg font-semibold transition">Submit Request</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#1f3b2c] text-[#eae4d8] py-8 text-center text-sm">
+    <p>© 2025 Merry Pines Holiday Services</p>
+    <p>Contact: <a href="mailto:info@merrypines.com" class="underline hover:text-[#b8903b]">info@merrypines.com</a></p>
+  </footer>
+
+</body>
+</html>
